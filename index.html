@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Dairy Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🐄 Smart Dairy Management System</h1>
+</header>
+
+<div class="main-container">
+    <div class="left-panel">
+        <h2>Upload Animal Image</h2>
+        <img src = "{{ url_for('static',filename = 'dairy.png')}}"
+        alt = "Dairy Farm Image" width = "100%"
+        style = "border-radius: 10px; margin-bottom: 15px;">
+        
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" required><br><br>
+            <button type="submit">Predict Animal</button>
+        </form>
+    </div>
+
+    {% if animal %}
+    <div class="result-box">
+        <h3>Prediction Result</h3>
+        <p><b>Animal:</b> {{ animal }}</p>
+        <p><b>Breed:</b> {{ breed }}</p>
+        <p><b>Color:</b> {{ color }}</p>
+        <p><b>Confidence:</b> {{ confidence }}%</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
